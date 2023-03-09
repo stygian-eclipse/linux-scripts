@@ -1,0 +1,66 @@
+# Linux Commands Tips&Tricks - CheatSheet
+
+# HOW TO Use command tree
+# Examples that work for me:
+# tree -a -l -f -R -N
+# tree -a -l -f -R -N -Q -p -u -g -h
+# tree -a -l -f -R -N -Q -p -u -g -s
+# tree -a -l -f -R -N -Q -p -u -g -s -D --inodes
+# tree -a -l -f -R -N -Q -p -u -g -s -D --inodes --device -C
+# tree -a -l -f -R -N -Q -p -u -g -s -D --inodes --device -C -X
+
+# HOW TO ls command - other command is tree
+# Examples that work for me:
+# A: ls -a -c -C -F --file-type -l -g
+# B: ls -a -c -C -F --classify -l -g
+# C: ls -a -c -C -F --file-type -l -g -i -p --indicator-style=slash -R -x
+# D: ls -a -c -C -F --file-type -l -g -i -p --indicator-style=slash -R -x -Z --context
+# E: ls -a -c -C -F --file-type -l -g -i -p --indicator-style=slash -R -x -Z --context -l
+# F: ls -a -l -i - shortest option to get a pretty good result
+# F: ls -a -l -i -p - shortest option to get a pretty good result, with the -p addition also marks directories with a '/' at their end 
+
+########################### DOCKER ###########################
+
+# HOW TO pull a docker image and login to that container as root 
+# C:\Projects - Tool Validation - Setup - Etc\Project - Jenkins>docker pull --help
+
+# Usage:  docker pull [OPTIONS] NAME[:TAG|@DIGEST]
+
+# Pull an image or a repository from a registry
+
+# Options:
+#  -a, --all-tags                Download all tagged images in the repository
+#      --disable-content-trust   Skip image verification (default true)
+#      --platform string         Set platform if server is multi-platform
+#                                capable
+#  -q, --quiet                   Suppress verbose output
+
+#C:\Projects - Tool Validation - Setup - Etc\Project - Jenkins>docker pull oraclelinux:9
+#9: Pulling from library/oraclelinux
+#07773263ab23: Pull complete
+#Digest: sha256:01c7e8c446a9a8a9565f4a98505aa14f09c1b6bce0935a5b606b18c4d1545a63
+#Status: Downloaded newer image for oraclelinux:9
+#docker.io/library/oraclelinux:9
+
+#C:\Projects - Tool Validation - Setup - Etc\Project - Jenkins>docker ps
+#CONTAINER ID   IMAGE           COMMAND       CREATED              STATUS              PORTS     NAMES
+#f657e6f247f6   oraclelinux:9   "/bin/bash"   About a minute ago   Up About a minute             angry_goodall
+
+#C:\Projects - Tool Validation - Setup - Etc\Project - Jenkins>docker exec -it angry_goodall /bin/bash
+#[root@f657e6f247f6 /]# pwd
+#/
+#[root@f657e6f247f6 /]# whoami
+#root
+#[root@f657e6f247f6 /]# :)
+#bash: syntax error near unexpected token `)'
+#[root@f657e6f247f6 /]# ls -a
+#.   .dockerenv  bin   dev  home  lib64  mnt  proc  run   srv  tmp  var
+#..  afs         boot  etc  lib   media  opt  root  sbin  sys  usr
+
+
+-----------------------------------------------------------------------------------
+# HOW TO login to linux docker image 
+# SSH into a Container
+# Use docker ps to get the name of the existing container.
+# Use the command docker exec -it <container name> /bin/bash to get a bash shell in the container.
+# Generically, use docker exec -it <container name> <command> to execute whatever command you specify in the container.
